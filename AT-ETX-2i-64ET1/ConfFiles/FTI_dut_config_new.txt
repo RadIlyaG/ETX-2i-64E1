@@ -1,0 +1,1089 @@
+#dut
+exit a
+con sys clock do 1
+source 1 rx-port ethernet 0/1
+quality-level prc
+wait	0
+clear
+exit a
+
+
+exit all
+    configure 
+#       Terminal Configuration
+        terminal 
+            timeout forever 
+        exit
+        peer 1 ip 10.10.20.200 
+#       System Configuration
+#       Port Configuration
+        port 
+#           Service Virtual Interface- Port Configuration
+            svi 1 
+                no shutdown 
+            exit
+#           E1 - Port Configuration
+            e1 0/1 
+                tx-clock-source domain 1
+                no shutdown
+
+            exit
+            e1 0/2 
+                tx-clock-source domain 1 
+                no shutdown
+            exit
+            e1 0/3 
+                tx-clock-source domain 1
+                no shutdown 
+            exit
+            e1 0/4 
+                tx-clock-source domain 1
+                no shutdown 
+
+            exit
+            e1 0/5 
+                tx-clock-source domain 1
+                no shutdown 
+           exit
+            e1 0/6 
+                tx-clock-source domain 1
+                no shutdown 
+            exit
+            e1 0/7 
+                tx-clock-source domain 1
+                no shutdown 
+            exit
+            e1 0/8 
+                tx-clock-source domain 1
+                no shutdown 
+            exit
+            e1 0/9 
+                tx-clock-source domain 1
+                no shutdown 
+            exit
+            e1 0/10 
+                tx-clock-source domain 1
+                no shutdown 
+            exit
+            e1 0/11 
+                tx-clock-source domain 1
+                no shutdown 
+            exit
+            e1 0/12 
+                tx-clock-source domain 1
+                no shutdown 
+            exit
+            e1 0/13 
+                tx-clock-source domain 1
+                no shutdown 
+            exit
+            e1 0/14 
+                tx-clock-source domain 1
+                no shutdown 
+            exit
+            e1 0/15 
+                tx-clock-source domain 1
+                no shutdown 
+            exit
+            e1 0/16 
+                tx-clock-source domain 1
+                no shutdown 
+            exit
+            e1 0/17 
+                tx-clock-source domain 1
+                no shutdown 
+            exit
+            e1 0/18 
+                tx-clock-source domain 1
+                no shutdown 
+            exit
+            e1 0/19 
+                tx-clock-source domain 1
+                no shutdown 
+            exit
+            e1 0/20 
+                tx-clock-source domain 1
+                no shutdown 
+            exit
+            e1 0/21 
+                tx-clock-source domain 1
+                no shutdown 
+            exit
+            e1 0/22 
+                tx-clock-source domain 1
+                no shutdown 
+            exit
+            e1 0/23 
+                tx-clock-source domain 1
+                no shutdown 
+            exit
+            e1 0/24 
+                tx-clock-source domain 1
+                no shutdown 
+            exit
+            e1 0/25 
+                tx-clock-source domain 1
+                no shutdown 
+            exit
+            e1 0/26 
+                tx-clock-source domain 1
+                no shutdown 
+            exit
+            e1 0/27 
+                tx-clock-source domain 1
+                no shutdown 
+            exit
+            e1 0/28 
+                tx-clock-source domain 1
+                no shutdown 
+            exit
+            e1 0/29 
+                tx-clock-source domain 1
+                no shutdown 
+            exit
+            e1 0/30 
+                tx-clock-source domain 1
+                no shutdown 
+            exit
+            e1 0/31 
+                tx-clock-source domain 1
+                no shutdown 
+            exit
+            e1 0/32 
+                tx-clock-source domain 1
+                no shutdown 
+            exit
+            e1 0/33 
+                tx-clock-source domain 1
+                no shutdown 
+            exit
+            e1 0/34 
+                tx-clock-source domain 1
+                no shutdown 
+            exit
+            e1 0/35 
+                tx-clock-source domain 1
+                no shutdown 
+            exit
+            e1 0/36 
+                tx-clock-source domain 1
+                no shutdown 
+            exit
+            e1 0/37 
+                tx-clock-source domain 1
+                no shutdown 
+            exit
+            e1 0/38 
+                tx-clock-source domain 1
+                no shutdown 
+            exit
+            e1 0/39 
+                tx-clock-source domain 1
+                no shutdown 
+            exit
+            e1 0/40 
+                tx-clock-source domain 1
+                no shutdown 
+            exit
+            e1 0/41 
+                tx-clock-source domain 1
+                no shutdown 
+            exit
+            e1 0/42 
+                tx-clock-source domain 1
+                no shutdown 
+            exit
+            e1 0/43 
+                tx-clock-source domain 1
+                no shutdown 
+            exit
+            e1 0/44 
+                tx-clock-source domain 1
+                no shutdown 
+            exit
+            e1 0/45 
+                tx-clock-source domain 1
+                no shutdown 
+            exit
+            e1 0/46 
+                tx-clock-source domain 1
+                no shutdown 
+            exit
+            e1 0/47 
+                tx-clock-source domain 1
+                no shutdown 
+            exit
+            e1 0/48 
+                tx-clock-source domain 1
+                no shutdown 
+            exit
+            e1 0/49 
+                tx-clock-source domain 1
+                no shutdown 
+            exit
+            e1 0/50 
+                tx-clock-source domain 1
+                no shutdown 
+            exit
+            e1 0/51 
+                tx-clock-source domain 1
+                no shutdown 
+            exit
+            e1 0/52 
+                tx-clock-source domain 1
+                no shutdown 
+            exit
+            e1 0/53 
+                tx-clock-source domain 1
+                no shutdown 
+            exit
+            e1 0/54 
+                tx-clock-source domain 1
+                no shutdown 
+            exit
+            e1 0/55 
+                tx-clock-source domain 1
+                no shutdown 
+            exit
+            e1 0/56 
+                tx-clock-source domain 1
+                no shutdown 
+            exit
+            e1 0/57 
+                tx-clock-source domain 1
+                no shutdown 
+            exit
+            e1 0/58 
+                tx-clock-source domain 1
+                no shutdown 
+            exit
+            e1 0/59 
+                tx-clock-source domain 1
+                no shutdown 
+            exit
+            e1 0/60 
+                tx-clock-source domain 1
+                no shutdown 
+            exit
+            e1 0/61 
+                tx-clock-source domain 1
+                no shutdown 
+            exit
+            e1 0/62 
+                tx-clock-source domain 1
+                no shutdown 
+            exit
+            e1 0/63 
+                tx-clock-source domain 1
+                no shutdown 
+            exit
+            e1 0/64 
+                tx-clock-source domain 1
+                no shutdown 
+            exit
+        exit
+#       Flows Configuration
+        flows 
+#           Classifier Profile Configuration
+            classifier-profile "all" match-any 
+                match all 
+            exit
+            classifier-profile "untagged" match-any 
+                match untagged 
+            exit
+#           Flow Configuration
+            flow "mng_access_default_in" 
+                classifier "mng_untagged" 
+                no policer 
+                ingress-port ethernet 0/101 
+                egress-port svi 96 
+                no shutdown 
+            exit
+            flow "mng_access_default_out" 
+                classifier "mng_all" 
+                no policer 
+                ingress-port svi 96 
+                egress-port ethernet 0/101 
+                no shutdown 
+            exit
+            flow "in" 
+                classifier "untagged" 
+                policer profile "Policer1" 
+                ingress-port ethernet 0/1 
+                egress-port svi 1 queue 1 
+                no shutdown 
+            exit
+            flow "out" 
+                classifier "all" 
+                policer profile "Policer1" 
+                ingress-port svi 1 
+                egress-port ethernet 0/1 queue 0 block 0/1 
+                no shutdown 
+            exit
+        exit
+        router 1 
+            name "Router#1" 
+            interface 1 
+                address 10.10.20.100/24 
+                bind svi 1 
+                no management-access 
+                dhcp-client 
+                    client-id mac 
+                exit
+                no shutdown 
+            exit
+        exit
+#       PWE - Configuration
+        pwe 
+            pw 1 type e1satop psn udp-over-ip 
+                peer 1 
+                label in 1 out 1 
+                 
+                tos 184 
+                tdm-payload size 32 
+                jitter-buffer 10000 
+                psn-oos 1-bit 
+                no shutdown 
+            exit
+            pw 2 type e1satop psn udp-over-ip 
+                peer 1 
+                label in 2 out 2 
+                 
+                tos 184 
+                tdm-payload size 32 
+                jitter-buffer 10000 
+                psn-oos 1-bit 
+                no shutdown 
+            exit
+            pw 3 type e1satop psn udp-over-ip 
+                peer 1 
+                label in 3 out 3 
+                 
+                tos 184 
+                tdm-payload size 32 
+                jitter-buffer 10000 
+                psn-oos 1-bit 
+                no shutdown 
+            exit
+            pw 4 type e1satop psn udp-over-ip 
+                peer 1 
+                label in 4 out 4 
+                 
+                tos 184 
+                tdm-payload size 32 
+                jitter-buffer 10000 
+                psn-oos 1-bit 
+                no shutdown 
+            exit
+            pw 5 type e1satop psn udp-over-ip 
+                peer 1 
+                label in 5 out 5 
+                 
+                tos 184 
+                tdm-payload size 32 
+                jitter-buffer 10000 
+                psn-oos 1-bit 
+                no shutdown 
+            exit
+            pw 6 type e1satop psn udp-over-ip 
+                peer 1 
+                label in 6 out 6 
+                 
+                tos 184 
+                tdm-payload size 32 
+                jitter-buffer 10000 
+                psn-oos 1-bit 
+                no shutdown 
+            exit
+            pw 7 type e1satop psn udp-over-ip 
+                peer 1 
+                label in 7 out 7 
+                 
+                tos 184 
+                tdm-payload size 32 
+                jitter-buffer 10000 
+                psn-oos 1-bit 
+                no shutdown 
+            exit
+            pw 8 type e1satop psn udp-over-ip 
+                peer 1 
+                label in 8 out 8 
+                 
+                tos 184 
+                tdm-payload size 32 
+                jitter-buffer 10000 
+                psn-oos 1-bit 
+                no shutdown 
+            exit
+            pw 9 type e1satop psn udp-over-ip 
+                peer 1 
+                label in 9 out 9 
+                 
+                tos 184 
+                tdm-payload size 32 
+                jitter-buffer 10000 
+                psn-oos 1-bit 
+                no shutdown 
+            exit
+            pw 10 type e1satop psn udp-over-ip 
+                peer 1 
+                label in 10 out 10 
+                 
+                tos 184 
+                tdm-payload size 32 
+                jitter-buffer 10000 
+                psn-oos 1-bit 
+                no shutdown 
+            exit
+            pw 11 type e1satop psn udp-over-ip 
+                peer 1 
+                label in 11 out 11 
+                 
+                tos 184 
+                tdm-payload size 32 
+                jitter-buffer 10000 
+                psn-oos 1-bit 
+                no shutdown 
+            exit
+            pw 12 type e1satop psn udp-over-ip 
+                peer 1 
+                label in 12 out 12 
+                 
+                tos 184 
+                tdm-payload size 32 
+                jitter-buffer 10000 
+                psn-oos 1-bit 
+                no shutdown 
+            exit
+            pw 13 type e1satop psn udp-over-ip 
+                peer 1 
+                label in 13 out 13 
+                 
+                tos 184 
+                tdm-payload size 32 
+                jitter-buffer 10000 
+                psn-oos 1-bit 
+                no shutdown 
+            exit
+            pw 14 type e1satop psn udp-over-ip 
+                peer 1 
+                label in 14 out 14 
+                 
+                tos 184 
+                tdm-payload size 32 
+                jitter-buffer 10000 
+                psn-oos 1-bit 
+                no shutdown 
+            exit
+            pw 15 type e1satop psn udp-over-ip 
+                peer 1 
+                label in 15 out 15 
+                 
+                tos 184 
+                tdm-payload size 32 
+                jitter-buffer 10000 
+                psn-oos 1-bit 
+                no shutdown 
+            exit
+            pw 16 type e1satop psn udp-over-ip 
+                peer 1 
+                label in 16 out 16 
+                 
+                tos 184 
+                tdm-payload size 32 
+                jitter-buffer 10000 
+                psn-oos 1-bit 
+                no shutdown 
+            exit
+            pw 17 type e1satop psn udp-over-ip 
+                peer 1 
+                label in 17 out 17 
+                 
+                tos 184 
+                tdm-payload size 32 
+                jitter-buffer 10000 
+                psn-oos 1-bit 
+                no shutdown 
+            exit
+            pw 18 type e1satop psn udp-over-ip 
+                peer 1 
+                label in 18 out 18 
+                 
+                tos 184 
+                tdm-payload size 32 
+                jitter-buffer 10000 
+                psn-oos 1-bit 
+                no shutdown 
+            exit
+            pw 19 type e1satop psn udp-over-ip 
+                peer 1 
+                label in 19 out 19 
+                 
+                tos 184 
+                tdm-payload size 32 
+                jitter-buffer 10000 
+                psn-oos 1-bit 
+                no shutdown 
+            exit
+            pw 20 type e1satop psn udp-over-ip 
+                peer 1 
+                label in 20 out 20 
+                 
+                tos 184 
+                tdm-payload size 32 
+                jitter-buffer 10000 
+                psn-oos 1-bit 
+                no shutdown 
+            exit
+            pw 21 type e1satop psn udp-over-ip 
+                peer 1 
+                label in 21 out 21 
+                 
+                tos 184 
+                tdm-payload size 32 
+                jitter-buffer 10000 
+                psn-oos 1-bit 
+                no shutdown 
+            exit
+            pw 22 type e1satop psn udp-over-ip 
+                peer 1 
+                label in 22 out 22 
+                 
+                tos 184 
+                tdm-payload size 32 
+                jitter-buffer 10000 
+                psn-oos 1-bit 
+                no shutdown 
+            exit
+            pw 23 type e1satop psn udp-over-ip 
+                peer 1 
+                label in 23 out 23 
+                 
+                tos 184 
+                tdm-payload size 32 
+                jitter-buffer 10000 
+                psn-oos 1-bit 
+                no shutdown 
+            exit
+            pw 24 type e1satop psn udp-over-ip 
+                peer 1 
+                label in 24 out 24 
+                 
+                tos 184 
+                tdm-payload size 32 
+                jitter-buffer 10000 
+                psn-oos 1-bit 
+                no shutdown 
+            exit
+            pw 25 type e1satop psn udp-over-ip 
+                peer 1 
+                label in 25 out 25 
+                 
+                tos 184 
+                tdm-payload size 32 
+                jitter-buffer 10000 
+                psn-oos 1-bit 
+                no shutdown 
+            exit
+            pw 26 type e1satop psn udp-over-ip 
+                peer 1 
+                label in 26 out 26 
+                 
+                tos 184 
+                tdm-payload size 32 
+                jitter-buffer 10000 
+                psn-oos 1-bit 
+                no shutdown 
+            exit
+            pw 27 type e1satop psn udp-over-ip 
+                peer 1 
+                label in 27 out 27 
+                 
+                tos 184 
+                tdm-payload size 32 
+                jitter-buffer 10000 
+                psn-oos 1-bit 
+                no shutdown 
+            exit
+            pw 28 type e1satop psn udp-over-ip 
+                peer 1 
+                label in 28 out 28 
+                 
+                tos 184 
+                tdm-payload size 32 
+                jitter-buffer 10000 
+                psn-oos 1-bit 
+                no shutdown 
+            exit
+            pw 29 type e1satop psn udp-over-ip 
+                peer 1 
+                label in 29 out 29 
+                 
+                tos 184 
+                tdm-payload size 32 
+                jitter-buffer 10000 
+                psn-oos 1-bit 
+                no shutdown 
+            exit
+            pw 30 type e1satop psn udp-over-ip 
+                peer 1 
+                label in 30 out 30 
+                 
+                tos 184 
+                tdm-payload size 32 
+                jitter-buffer 10000 
+                psn-oos 1-bit 
+                no shutdown 
+            exit
+            pw 31 type e1satop psn udp-over-ip 
+                peer 1 
+                label in 31 out 31 
+                 
+                tos 184 
+                tdm-payload size 32 
+                jitter-buffer 10000 
+                psn-oos 1-bit 
+                no shutdown 
+            exit
+            pw 32 type e1satop psn udp-over-ip 
+                peer 1 
+                label in 32 out 32 
+                 
+                tos 184 
+                tdm-payload size 32 
+                jitter-buffer 10000 
+                psn-oos 1-bit 
+                no shutdown 
+            exit
+            pw 33 type e1satop psn udp-over-ip 
+                peer 1 
+                label in 33 out 33 
+                 
+                tos 184 
+                tdm-payload size 32 
+                jitter-buffer 10000 
+                psn-oos 1-bit 
+                no shutdown 
+            exit
+            pw 34 type e1satop psn udp-over-ip 
+                peer 1 
+                label in 34 out 34 
+                 
+                tos 184 
+                tdm-payload size 32 
+                jitter-buffer 10000 
+                psn-oos 1-bit 
+                no shutdown 
+            exit
+            pw 35 type e1satop psn udp-over-ip 
+                peer 1 
+                label in 35 out 35 
+                 
+                tos 184 
+                tdm-payload size 32 
+                jitter-buffer 10000 
+                psn-oos 1-bit 
+                no shutdown 
+            exit
+            pw 36 type e1satop psn udp-over-ip 
+                peer 1 
+                label in 36 out 36 
+                 
+                tos 184 
+                tdm-payload size 32 
+                jitter-buffer 10000 
+                psn-oos 1-bit 
+                no shutdown 
+            exit
+            pw 37 type e1satop psn udp-over-ip 
+                peer 1 
+                label in 37 out 37 
+                 
+                tos 184 
+                tdm-payload size 32 
+                jitter-buffer 10000 
+                psn-oos 1-bit 
+                no shutdown 
+            exit
+            pw 38 type e1satop psn udp-over-ip 
+                peer 1 
+                label in 38 out 38 
+                 
+                tos 184 
+                tdm-payload size 32 
+                jitter-buffer 10000 
+                psn-oos 1-bit 
+                no shutdown 
+            exit
+            pw 39 type e1satop psn udp-over-ip 
+                peer 1 
+                label in 39 out 39 
+                 
+                tos 184 
+                tdm-payload size 32 
+                jitter-buffer 10000 
+                psn-oos 1-bit 
+                no shutdown 
+            exit
+            pw 40 type e1satop psn udp-over-ip 
+                peer 1 
+                label in 40 out 40 
+                 
+                tos 184 
+                tdm-payload size 32 
+                jitter-buffer 10000 
+                psn-oos 1-bit 
+                no shutdown 
+            exit
+            pw 41 type e1satop psn udp-over-ip 
+                peer 1 
+                label in 41 out 41 
+                 
+                tos 184 
+                tdm-payload size 32 
+                jitter-buffer 10000 
+                psn-oos 1-bit 
+                no shutdown 
+            exit
+            pw 42 type e1satop psn udp-over-ip 
+                peer 1 
+                label in 42 out 42 
+                 
+                tos 184 
+                tdm-payload size 32 
+                jitter-buffer 10000 
+                psn-oos 1-bit 
+                no shutdown 
+            exit
+            pw 43 type e1satop psn udp-over-ip 
+                peer 1 
+                label in 43 out 43 
+                 
+                tos 184 
+                tdm-payload size 32 
+                jitter-buffer 10000 
+                psn-oos 1-bit 
+                no shutdown 
+            exit
+            pw 44 type e1satop psn udp-over-ip 
+                peer 1 
+                label in 44 out 44 
+                 
+                tos 184 
+                tdm-payload size 32 
+                jitter-buffer 10000 
+                psn-oos 1-bit 
+                no shutdown 
+            exit
+            pw 45 type e1satop psn udp-over-ip 
+                peer 1 
+                label in 45 out 45 
+                 
+                tos 184 
+                tdm-payload size 32 
+                jitter-buffer 10000 
+                psn-oos 1-bit 
+                no shutdown 
+            exit
+            pw 46 type e1satop psn udp-over-ip 
+                peer 1 
+                label in 46 out 46 
+                 
+                tos 184 
+                tdm-payload size 32 
+                jitter-buffer 10000 
+                psn-oos 1-bit 
+                no shutdown 
+            exit
+            pw 47 type e1satop psn udp-over-ip 
+                peer 1 
+                label in 47 out 47 
+                 
+                tos 184 
+                tdm-payload size 32 
+                jitter-buffer 10000 
+                psn-oos 1-bit 
+                no shutdown 
+            exit
+            pw 48 type e1satop psn udp-over-ip 
+                peer 1 
+                label in 48 out 48 
+                 
+                tos 184 
+                tdm-payload size 32 
+                jitter-buffer 10000 
+                psn-oos 1-bit 
+                no shutdown 
+            exit
+            pw 49 type e1satop psn udp-over-ip 
+                peer 1 
+                label in 49 out 49 
+                 
+                tos 184 
+                tdm-payload size 32 
+                jitter-buffer 10000 
+                psn-oos 1-bit 
+                no shutdown 
+            exit
+            pw 50 type e1satop psn udp-over-ip 
+                peer 1 
+                label in 50 out 50 
+                 
+                tos 184 
+                tdm-payload size 32 
+                jitter-buffer 10000 
+                psn-oos 1-bit 
+                no shutdown 
+            exit
+            pw 51 type e1satop psn udp-over-ip 
+                peer 1 
+                label in 51 out 51 
+                 
+                tos 184 
+                tdm-payload size 32 
+                jitter-buffer 10000 
+                psn-oos 1-bit 
+                no shutdown 
+            exit
+            pw 52 type e1satop psn udp-over-ip 
+                peer 1 
+                label in 52 out 52 
+                 
+                tos 184 
+                tdm-payload size 32 
+                jitter-buffer 10000 
+                psn-oos 1-bit 
+                no shutdown 
+            exit
+            pw 53 type e1satop psn udp-over-ip 
+                peer 1 
+                label in 53 out 53 
+                 
+                tos 184 
+                tdm-payload size 32 
+                jitter-buffer 10000 
+                psn-oos 1-bit 
+                no shutdown 
+            exit
+            pw 54 type e1satop psn udp-over-ip 
+                peer 1 
+                label in 54 out 54 
+                 
+                tos 184 
+                tdm-payload size 32 
+                jitter-buffer 10000 
+                psn-oos 1-bit 
+                no shutdown 
+            exit
+            pw 55 type e1satop psn udp-over-ip 
+                peer 1 
+                label in 55 out 55 
+                 
+                tos 184 
+                tdm-payload size 32 
+                jitter-buffer 10000 
+                psn-oos 1-bit 
+                no shutdown 
+            exit
+            pw 56 type e1satop psn udp-over-ip 
+                peer 1 
+                label in 56 out 56 
+                 
+                tos 184 
+                tdm-payload size 32 
+                jitter-buffer 10000 
+                psn-oos 1-bit 
+                no shutdown 
+            exit
+            pw 57 type e1satop psn udp-over-ip 
+                peer 1 
+                label in 57 out 57 
+                 
+                tos 184 
+                tdm-payload size 32 
+                jitter-buffer 10000 
+                psn-oos 1-bit 
+                no shutdown 
+            exit
+            pw 58 type e1satop psn udp-over-ip 
+                peer 1 
+                label in 58 out 58 
+                 
+                tos 184 
+                tdm-payload size 32 
+                jitter-buffer 10000 
+                psn-oos 1-bit 
+                no shutdown 
+            exit
+            pw 59 type e1satop psn udp-over-ip 
+                peer 1 
+                label in 59 out 59 
+                 
+                tos 184 
+                tdm-payload size 32 
+                jitter-buffer 10000 
+                psn-oos 1-bit 
+                no shutdown 
+            exit
+            pw 60 type e1satop psn udp-over-ip 
+                peer 1 
+                label in 60 out 60 
+                 
+                tos 184 
+                tdm-payload size 32 
+                jitter-buffer 10000 
+                psn-oos 1-bit 
+                no shutdown 
+            exit
+            pw 61 type e1satop psn udp-over-ip 
+                peer 1 
+                label in 61 out 61 
+                 
+                tos 184 
+                tdm-payload size 32 
+                jitter-buffer 10000 
+                psn-oos 1-bit 
+                no shutdown 
+            exit
+            pw 62 type e1satop psn udp-over-ip 
+                peer 1 
+                label in 62 out 62 
+                 
+                tos 184 
+                tdm-payload size 32 
+                jitter-buffer 10000 
+                psn-oos 1-bit 
+                no shutdown 
+            exit
+            pw 63 type e1satop psn udp-over-ip 
+                peer 1 
+                label in 63 out 63 
+                 
+                tos 184 
+                tdm-payload size 32 
+                jitter-buffer 10000 
+                psn-oos 1-bit 
+                no shutdown 
+            exit
+            pw 64 type e1satop psn udp-over-ip 
+                peer 1 
+                label in 64 out 64 
+                 
+                tos 184 
+                tdm-payload size 32 
+                jitter-buffer 10000 
+                psn-oos 1-bit 
+                no shutdown 
+            exit
+        exit
+        cross-connect 
+            pw-tdm pw 1 e1 0/1 
+            pw-tdm pw 2 e1 0/2 
+            pw-tdm pw 3 e1 0/3 
+            pw-tdm pw 4 e1 0/4 
+            pw-tdm pw 5 e1 0/5 
+            pw-tdm pw 6 e1 0/6 
+            pw-tdm pw 7 e1 0/7 
+            pw-tdm pw 8 e1 0/8 
+            pw-tdm pw 9 e1 0/9 
+            pw-tdm pw 10 e1 0/10 
+            pw-tdm pw 11 e1 0/11 
+            pw-tdm pw 12 e1 0/12 
+            pw-tdm pw 13 e1 0/13 
+            pw-tdm pw 14 e1 0/14 
+            pw-tdm pw 15 e1 0/15 
+            pw-tdm pw 16 e1 0/16 
+            pw-tdm pw 17 e1 0/17 
+            pw-tdm pw 18 e1 0/18 
+            pw-tdm pw 19 e1 0/19 
+            pw-tdm pw 20 e1 0/20 
+            pw-tdm pw 21 e1 0/21 
+            pw-tdm pw 22 e1 0/22 
+            pw-tdm pw 23 e1 0/23 
+            pw-tdm pw 24 e1 0/24 
+            pw-tdm pw 25 e1 0/25 
+            pw-tdm pw 26 e1 0/26 
+            pw-tdm pw 27 e1 0/27 
+            pw-tdm pw 28 e1 0/28 
+            pw-tdm pw 29 e1 0/29 
+            pw-tdm pw 30 e1 0/30 
+            pw-tdm pw 31 e1 0/31 
+            pw-tdm pw 32 e1 0/32 
+            pw-tdm pw 33 e1 0/33 
+            pw-tdm pw 34 e1 0/34 
+            pw-tdm pw 35 e1 0/35 
+            pw-tdm pw 36 e1 0/36 
+            pw-tdm pw 37 e1 0/37 
+            pw-tdm pw 38 e1 0/38 
+            pw-tdm pw 39 e1 0/39 
+            pw-tdm pw 40 e1 0/40 
+            pw-tdm pw 41 e1 0/41 
+            pw-tdm pw 42 e1 0/42 
+            pw-tdm pw 43 e1 0/43 
+            pw-tdm pw 44 e1 0/44 
+            pw-tdm pw 45 e1 0/45 
+            pw-tdm pw 46 e1 0/46 
+            pw-tdm pw 47 e1 0/47 
+            pw-tdm pw 48 e1 0/48 
+            pw-tdm pw 49 e1 0/49 
+            pw-tdm pw 50 e1 0/50 
+            pw-tdm pw 51 e1 0/51 
+            pw-tdm pw 52 e1 0/52 
+            pw-tdm pw 53 e1 0/53 
+            pw-tdm pw 54 e1 0/54 
+            pw-tdm pw 55 e1 0/55 
+            pw-tdm pw 56 e1 0/56 
+            pw-tdm pw 57 e1 0/57 
+            pw-tdm pw 58 e1 0/58 
+            pw-tdm pw 59 e1 0/59 
+            pw-tdm pw 60 e1 0/60 
+            pw-tdm pw 61 e1 0/61 
+            pw-tdm pw 62 e1 0/62 
+            pw-tdm pw 63 e1 0/63 
+            pw-tdm pw 64 e1 0/64 
+        exit
+    exit
+
+    configure 
+    exit
+	
+	exit a
+con port eth 0/2
+shut
+func user
+no shut
+exit a
+
+con fl
+           flow "2_2" 
+                classifier "all" 
+                ingress-port ethernet 0/2 
+                egress-port ethernet 0/2 queue 0 block 0/1 
+                no shutdown 
+            exit
+			flow "3_4" 
+                classifier "all" 
+                ingress-port ethernet 0/3 
+                egress-port ethernet 0/4 queue 0 block 0/1 
+                no shutdown 
+            exit
+			flow "4_3" 
+                classifier "all" 
+                ingress-port ethernet 0/4 
+                egress-port ethernet 0/3 queue 0 block 0/1 
+                no shutdown 
+            exit
+			flow "5_6" 
+                classifier "all" 
+                ingress-port ethernet 0/5 
+                egress-port ethernet 0/6 queue 0 block 0/1 
+                no shutdown 
+            exit
+			flow "6_5" 
+                classifier "all" 
+                ingress-port ethernet 0/6 
+                egress-port ethernet 0/5 queue 0 block 0/1 
+                no shutdown 
+            exit
+			
+exit a

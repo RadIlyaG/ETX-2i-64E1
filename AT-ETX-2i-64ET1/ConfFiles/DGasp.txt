@@ -1,0 +1,43 @@
+configure port svi 1
+	no shutdown
+	exit
+	exit
+	flows
+	classifier-profile u match-any match untagged
+	flow 10
+	classifier u                                 
+	ingress-port svi 1
+	egress-port ethernet 0/6 queue 0 block 0/1
+	no shutdown
+	exit
+	flow 11
+	classifier u
+	no policer
+	ingress-port ethernet 0/6
+	egress-port svi 1 queue 0
+	no shutdown
+	exit
+	exit
+	router 1
+	interface 1
+	address 10.10.10.11/24
+	bind svi 1
+	no shutdown
+	exit
+	exit
+	management
+	snmp
+	target-params 1
+	message-processing-model snmpv3
+	version usm
+	security name initial level no-auth-no-priv
+	no shutdown
+	exit
+	target mypc
+	target-params 1
+	address udp-domain 10.10.10.10
+	no shutdown
+	tag-list unmasked
+	trap-sync-group 1
+exit all
+save

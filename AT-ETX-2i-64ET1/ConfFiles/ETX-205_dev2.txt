@@ -1,0 +1,17 @@
+# 205 dev 2  to test 2i64 can Tx clock
+
+
+con sys clo	
+station 1
+shut
+inte 2
+no shut
+exit a
+
+con sys clo do 1
+source 1 rx-port eth 1
+qua prc
+wait 0
+clear
+exit 
+force- 
