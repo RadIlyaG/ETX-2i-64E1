@@ -20,18 +20,12 @@ proc BuildTests {} {
   lappend lTestNames SetToDefault
    
   lappend lTestNames ID 
-  #08/04/2019 08:36:22 lappend lTestNames FansTemperature
-  #lappend lTestNames SFP_ID ; #USBport 
   lappend lTestNames E1_Ethernet_conf E1_Ethernet_SFP E1_UTP Ethernet_UTP ; #Ethernet_Link_SFP
   lappend lTestNames SyncE_conf
-  #lappend lTestNames SyncE_Slave_conf SyncE_Slave_run
   lappend lTestNames SyncE_Slave_run
-  #lappend lTestNames SyncE_Master_conf SyncE_Master_run
   lappend lTestNames SyncE_Master_run
   lappend lTestNames DyingGasp_conf DyingGasp_run
-  #lappend lTestNames DDR 
-  lappend lTestNames SetToDefault DDR
-  #lappend lTestNames TstAlmLed; # Leds_FAN_conf Leds_FAN 
+  lappend lTestNames SetToDefault ; # 08:39 24/10/2023 DDR
   lappend lTestNames Leds
   lappend lTestNames Mac_BarCode
   
