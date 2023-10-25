@@ -1,0 +1,12 @@
+set gaGui(xy) +131+657
+set gaSet(entDUT) "ETX-2I-10G-B_TWC/8.5/AC/8SFPP/LPK8"
+set gaSet(DutInitName) "ETX-2I-10G-B_TWC.8.5.AC.8SFPP.LPK8.tcl"
+set gaSet(performShortTest) "0"
+set gaSet(eraseTitle) "0"
+set gaSet(ddrMultyQty) "5"
+set gaSet(scopeModel) "DSOX1102A"
+set gaSet(enSerNum) "0"
+set gaSet(enJat) "0"
+set gaSet(enPll) "0"
+set gaSet(rbTestMode) "MainBoard"
+set gaSet(enVneNum) "0"

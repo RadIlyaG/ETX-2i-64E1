@@ -3,7 +3,7 @@
 # ***************************************************************************
 proc BuildTests {} {
   global gaSet gaGui glTests
-  
+  set glTests [list]
   if {![info exists gaSet(DutInitName)] || $gaSet(DutInitName)==""} {
     puts "\n[MyTime] BuildTests DutInitName doesn't exists or empty. Return -1\n"
     return -1
@@ -13,31 +13,19 @@ proc BuildTests {} {
   RetriveDutFam 
   foreach {b r p d ps np up} [split $gaSet(dutFam) .] {}
   
-  set lTestsAllTests [list]
-  set lDownloadTests [list BootDownload SetDownload Pages SoftwareDownload]
-  eval lappend lTestsAllTests $lDownloadTests
-  
-  lappend lTestNames SetToDefault
-   
-  lappend lTestNames ID 
-  lappend lTestNames E1_Ethernet_conf E1_Ethernet_SFP E1_UTP Ethernet_UTP ; #Ethernet_Link_SFP
-  lappend lTestNames SyncE_conf
-  lappend lTestNames SyncE_Slave_run
-  lappend lTestNames SyncE_Master_run
-  lappend lTestNames DyingGasp_conf DyingGasp_run
-  lappend lTestNames SetToDefault ; # 08:39 24/10/2023 DDR
-  lappend lTestNames Leds
-  lappend lTestNames Mac_BarCode
-  
-  eval lappend lTestsAllTests $lTestNames
-  
-  set glTests ""
-  set gaSet(TestMode) AllTests
-  set lTests [set lTests$gaSet(TestMode)]
-  
-#   if {$gaSet(defConfEn)=="1"} {
-#     lappend lTests LoadDefaultConfiguration
-#   }
+  set lTests [list BootDownload  Pages]
+  lappend lTests Burn_U74 ; #SetDownload_U47_app Load_U47_app
+  lappend lTests SoftwareDownload
+  lappend lTests SetToDefault
+  lappend lTests ID 
+  lappend lTests E1_Ethernet_conf E1_Ethernet_SFP E1_UTP Ethernet_UTP ; #Ethernet_Link_SFP
+  lappend lTests SyncE_conf
+  lappend lTests SyncE_Slave_run
+  lappend lTests SyncE_Master_run
+  lappend lTests DyingGasp_conf DyingGasp_run
+  lappend lTests SetToDefault ; # 08:39 24/10/2023 DDR
+  lappend lTests Leds
+  lappend lTests Mac_BarCode
   
   for {set i 0; set k 1} {$i<[llength $lTests]} {incr i; incr k} {
     lappend glTests "$k..[lindex $lTests $i]"
@@ -1259,6 +1247,8 @@ proc Pages {run} {
 # SoftwareDownload
 # ***************************************************************************
 proc SoftwareDownload {run} {
+  set ret [SetSWDownload]
+  if {$ret!=0} {return $ret}
   
   set ret [EntryBootMenu]
   if {$ret!=0} {return $ret}
@@ -1488,3 +1478,28 @@ proc TstAlmLed {run} {
   }
   return $ret
 }  
+
+# ***************************************************************************
+# Burn_U74
+# ***************************************************************************
+proc Burn_U74 {run} {
+  global gaSet
+  AddToPairLog $gaSet(pair) "U74 revision: $gaSet(abd)"
+  set ret [SetU74_appDownload]
+  if {$ret!=0} {return $ret}
+  set ret [Load_U74_app_Perf]
+  if {$ret!=0} {return $ret}
+  return $ret
+}
+# ***************************************************************************
+# SetDownload_U47_app
+# ***************************************************************************
+proc neSetDownload_U47_app {run} {
+  set ret [SetU47_appDownload]
+}
+# ***************************************************************************
+# Load_U47_app
+# ***************************************************************************
+proc neLoad_U47_app {run} {
+  set ret [Load_U47_app_Perf]
+}

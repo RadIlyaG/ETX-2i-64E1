@@ -1260,3 +1260,39 @@ proc UpdateInitsToTesters {} {
     tk_messageBox -message $msg -type ok -icon info -title "Tester update"
   } 
 }
+# ***************************************************************************
+# PrepareDwnlJatPll
+# ***************************************************************************
+proc PrepareDwnlJatPll {} {
+  global gaSet
+   
+  set SWCF c:/download/JTAG_Burn_64E1/sw-pack_2i_rev_[set gaSet(abd)].bin
+  puts "SetJatPllDownload SWCF:$SWCF"; update
+  
+  if {[file exists $SWCF]!=1} {
+    set gaSet(fail) "The SW file $SWCF doesn't exist"
+    return -1
+  }
+     
+  # set tail [file tail $SWCF]
+  set tail $gaSet(pair)_[file tail $SWCF]
+  set rootTail [file rootname $tail]
+  if [file exists c:/download/temp/$tail] {
+    catch {file delete -force c:/download/temp/$tail}
+    after 2000
+    if [file exists c:/download/temp/$tail] {
+      if [catch {file delete -force c:/download/temp/$tail} cres] {
+        set gaSet(fail) "The SW file ($SWCF) can't be deleted"
+        puts "[MyTime] PrepareDwnlJatPll. The file c:/download/temp/$tail ($gaSet(SWCF)) can't be deleted. cres:<$cres>"
+        return -1
+      }
+    
+    }
+  }
+    
+  if [catch {file copy -force $SWCF c:/download/temp/$tail } res] {
+    set tail $res
+  }
+  
+  return $tail
+}

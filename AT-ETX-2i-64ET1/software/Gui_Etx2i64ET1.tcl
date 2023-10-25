@@ -256,7 +256,12 @@ proc GUI {} {
   .menubar.tterminal entryconfigure 5 -label "ETX205-2: COM $gaSet(comAux2)" -font {{Lucida Console} 9}
   
   LoadBootErrorsFile
-  GuiMuxMngIO ioToGenMngToPc ioToIo
+  
+  if {[string match *ilya-g* [info host]]} {
+    ## do nothing
+  } else {
+    GuiMuxMngIO ioToGenMngToPc ioToIo
+  }
   
   if ![info exists ::RadAppsPath] {
     set ::RadAppsPath c:/RadApps
@@ -287,7 +292,7 @@ proc About {} {
 #** ButRun
 #***************************************************************************
 proc ButRun {} {
-  global gaSet gaGui glTests gRelayState glSFPs
+  global gaSet gaGui glTests gRelayState glSFPs gaDBox
   
   pack forget $gaGui(frFailStatus)
   set gaSet(runStatus) ""
@@ -419,6 +424,32 @@ proc ButRun {} {
 #   puts "[MyTime] source Lib_Put_RicEth_$gaSet(dutFam).tcl" ; update
 #   source Lib_Put_RicEth_$gaSet(dutFam).tcl
 #   
+
+  if {$ret==0} {
+    switch -glob -- $gaSet(startFrom) {
+      *BootDownload - *Pages - *Burn_U74 {set showU74choice 1}
+      default {set showU74choice 0}
+    }
+    if $showU74choice {
+      RLSound::Play information
+      set txt "Please "
+      set res [DialogBox -icon images/info -type "Continue Abort" -title "U74 revision" -text "Choose U74's revision" \
+        -RadButQty 3 -RadButVar "abd" -RadButLab {"rev. A" "rev. B" "rev. D"} -RadButVal "A B D" -RadButInvoke 3]
+      #set res [DialogBox -icon images/info -type "Continue Abort" -text $txt -default 1 -aspect 2000 -title "ETX-2i-10G"]
+      if {$res=="Abort"} {
+        set ret -2
+        set gaSet(fail) "User stop"
+        Status "User stop"
+  #       AddToLog $gaSet(fail)
+        AddToPairLog $gaSet(pair) $gaSet(fail)
+      } else {        
+        set gaSet(abd) $gaDBox(abd)
+        set ret 0
+      }
+    }       
+  }
+  
+  
   if {$ret==0} {
     IPRelay-Green
     Status ""

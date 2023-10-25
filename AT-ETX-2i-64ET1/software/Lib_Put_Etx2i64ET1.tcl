@@ -1719,7 +1719,7 @@ proc Boot_Download {} {
 # ***************************************************************************
 # SetDownload
 # ***************************************************************************
-proc SetDownload {run} {
+proc neSetDownload {run} {
   set ret [SetSWDownload]
   if {$ret!=0} {return $ret}
   
@@ -1937,7 +1937,7 @@ proc DeleteBootFiles {} {
   if {$ret8!=0} {
     set res [Send $com "delete startup-config\12" "deleted successfully" 20]
     if {$res!=0} {
-      set gaSet(fail) "Use-str-config delete fail
+      set gaSet(fail) "Use-str-config delete fail"
       return -1      
     } 
     puts "startup-config Delete" ; update      
@@ -2362,3 +2362,175 @@ proc MaskMin {mode} {
   if {$ret!=0} {return $ret}
   return $ret
 }
+# ***************************************************************************
+# SetU74_appDownload
+# ***************************************************************************
+proc SetU74_appDownload {} {
+  global gaSet buffer 
+  if {$gaSet(abd) == "B"} {return 0}
+  set com $gaSet(comUut1)
+  Status "Set U74_app Download"
+  
+  set ret [EntryBootMenu]
+  if {$ret!=0} {return $ret}
+  
+  set ret [DeleteBootFiles]
+  if {$ret!=0} {return $ret}
+  
+  set ret [PrepareDwnlJatPll]
+  if {$ret=="-1"} {return $ret}
+  set tail $ret
+  
+  Send $com "\r\r" "\[boot\]:"
+  set ret [Send $com "\r\r" "\[boot\]:"]  
+  if {$ret!=0} {
+    set gaSet(fail) "Boot Setup fail"
+    return -1
+  }
+  #Send $com "c\r" "file name" 
+  #Send $com "$tail\r" "device IP"
+  Send $com "c\r" "device IP"
+  if {$gaSet(pair)==5} {
+    set ip 10.10.10.1[set ::pair]
+  } else {
+    if {$gaSet(pair)=="SE"} {
+      set ip 10.10.10.111
+    } else {
+      set ip 10.10.10.1[set gaSet(pair)]
+    }  
+  }
+  Send $com "$ip\r" "device mask"
+  Send $com "255.255.255.0\r" "server IP"
+  Send $com "10.10.10.10\r" "gateway IP"
+  Send $com "10.10.10.10\r" "user"
+  Send $com "\r" "(pw)" ;# vxworks
+
+  # device name: 8313
+  set ret [Send $com "\r" "quick autoboot"]  
+  if {$ret!=0} {  
+    Send $com "\r" "quick autoboot"
+  } 
+
+  Send $com "n\r" "protocol" 
+  #Send $com "tftp\12" "baud rate" ;# 9600
+  Send $com "ftp\r" "baud rate" ;# 9600
+  Send $com "\r" "\[boot\]:"
+  
+  # Reboot:
+  Status "Reset the unit ..."
+  Send $com "reset\r" "y/n"
+  Send $com "y\r" "\[boot\]:" 10
+                                                               
+  set i 1
+  set ret [Send $com "\r" "\[boot\]:" 2]  
+  while {($ret!=0)&&($i<=4)} {
+    incr i
+    set ret [Send $com "\r" "\[boot\]:" 2]  
+  }
+  if {$ret!=0} {
+    set gaSet(fail) "Boot Setup fail."
+    return -1 
+  }
+
+  Status "Wait for download / writing to flash .."
+  set gaSet(fail) "Application download fail"
+  Send $com "download 1,[set tail]\r" "stam" 3
+  if {[string match {*Are you sure(y/n)?*} $buffer]==1} {
+    Send $com "y" "stam" 2
+  }
+  
+  if {[string match {*Error*} $buffer]==1} {
+    return -1
+  }
+   
+  set ret [MyWaitFor $com "boot" 5 820]
+  if {$ret!=0} {return $ret}
+ 
+  Status "Wait for set active 1 .."
+  set ret [Send $com "set-active 1\r" "SW set active 1 completed successfully" 30] 
+  if {$ret!=0} {
+    set gaSet(fail) "Activate SW Pack1 fail"
+    return -1
+  }
+  
+  if [file exists c:/download/temp/$tail] {
+    catch {file delete -force c:/download/temp/$tail}
+    after 2000
+    if [file exists c:/download/temp/$tail] {
+      if [catch {file delete -force c:/download/temp/$tail}] {
+         set gaSet(fail) "The SW file ($SWCF) can't be deleted"
+         return -1
+      }
+    
+    }
+  }
+  
+  Status "Wait for loading start .."
+  set ret [Send $com "run\r" "Loading" 30]
+  return $ret     
+}
+
+# ***************************************************************************
+# Load_U74_app_Perf
+# ***************************************************************************
+proc Load_U74_app_Perf {} {
+  global gaSet gaGui buffer 
+  if {$gaSet(abd) == "B"} {return 0}
+  set com $gaSet(comUut1)
+  Status "Loading U74_app"
+  
+  set ret [Login  Uut1]
+  if {$ret!=0} {
+    #set ret [Login]
+    if {$ret!=0} {return $ret}
+  }
+    
+  set gaSet(fail) "Logon fail"
+  Send $com "exit all\r" stam 0.25 
+  
+  foreach {b r p d ps np up} [split $gaSet(dutFam) .] {}
+  
+  Send $com "logon\r" stam 0.25 
+  if {[string match {*command not recognized*} $buffer]==0} {
+    set ret [Send $com "logon debug\r" password]
+    if {$ret!=0} {return $ret}
+    regexp {Key code:\s+(\d+)\s} $buffer - kc
+    catch {exec $::RadAppsPath/atedecryptor.exe $kc pass} password
+    set ret [Send $com "$password\r" $gaSet(prompt) 1]
+    if {$ret!=0} {return $ret}
+  }     
+ 
+  set gaSet(fail) "Load_U74_app_Perf Test fail"
+  set ret [Send $com "debug mea\r\r\r" FPGA]
+  if {$ret!=0} {
+    set ret [Send $com "debug mea\r\r\r" FPGA]
+    if {$ret!=0} {return $ret}
+  } 
+    
+  #if {$gaSet(enJat)==1} {}
+  set gaSet(fail) "Load U47_app fail"
+  set ret [Send $com "mea util jat\r" "jat"]
+  if {$ret!=0} {return $ret}
+  set ret [Send $com "show\r" "jat"]
+  if {$ret!=0} {return $ret}
+  set res [regexp {banks[\.\s]+(\d)\s} $buffer ma value]
+  if {$res==0} {
+    set gaSet(fail) "Read JAT show fail"
+    return -1
+  }
+  puts "Load_U47_app_Perf ma:{$ma} value:{$value}"
+  
+  if {$value==0} {
+    set gaSet(fail) "No empty JAT user banks"
+    return -1
+  }
+  set ret [Send $com "load\r" "y/n"]
+  if {$ret!=0} {return $ret}
+  set ret [Send $com "y\r" "Programming succeeded" 20]
+  if {$ret!=0} {return $ret}
+  set ret [Send $com "top\r" "FPGA"]
+  if {$ret!=0} {return $ret}
+    
+  return $ret  
+}
+

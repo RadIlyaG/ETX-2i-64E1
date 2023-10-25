@@ -53,8 +53,11 @@ if 1 {
   set d2 [file normalize  C:/download]
     
   if {$gaSet(radNet)} {
-    #set emailL {ilya_g@rad.com}
-    set emailL {{yulia_s@rad.com} {} {} }
+    if {[string match *ilya-g* [info host]]} {
+      set emailL [list]
+    } else {
+      set emailL {{yulia_s@rad.com} {} {} }
+    } 
   } else {
     set emailL [list]
   }
