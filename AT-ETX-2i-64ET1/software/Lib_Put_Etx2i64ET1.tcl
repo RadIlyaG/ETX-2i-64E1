@@ -879,7 +879,7 @@ proc Login {unit} {
     if {$gaSet(act)==0} {return -2}
     Status "Login into ETX-2I"
     puts "Login into ETX-2I i:$i"; update
-    $gaSet(runTime) configure -text $i
+    $gaSet(runTime) configure -text $i; update
     Send $com \r stam 5
     
     append gaSet(loginBuffer) "$buffer"
@@ -2496,7 +2496,7 @@ proc Load_U74_app_Perf {} {
     if {$ret!=0} {return $ret}
     regexp {Key code:\s+(\d+)\s} $buffer - kc
     catch {exec $::RadAppsPath/atedecryptor.exe $kc pass} password
-    set ret [Send $com "$password\r" $gaSet(prompt) 1]
+    set ret [Send $com "$password\r" "-2I" 1]
     if {$ret!=0} {return $ret}
   }     
  

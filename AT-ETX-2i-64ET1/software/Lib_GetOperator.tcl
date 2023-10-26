@@ -307,8 +307,8 @@ proc GetOpDlg {args} {
     bind $ht <1> $varlinkCmd
   }
   
-  bind .tmpldlg <Control-i> [list InsertIGid $dlg]
-  bind .tmpldlg <Control-l> [list InsertLastId $dlg]
+  bind .tmpldlg <Alt-y> [list InsertIGid $dlg]
+  bind .tmpldlg <Alt-l> [list InsertLastId $dlg]
   set ret [$dlg draw]		
   destroy $dlg
   return $ret
