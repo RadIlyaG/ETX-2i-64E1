@@ -1741,7 +1741,7 @@ proc nePages {run} {
 # ***************************************************************************
 # SoftwareDownload
 # ***************************************************************************
-proc SoftwareDownload {run} {
+proc neSoftwareDownload {run} {
   
   set ret [EntryBootMenu]
   if {$ret!=0} {return $ret}
