@@ -1728,7 +1728,7 @@ proc neSetDownload {run} {
 # ***************************************************************************
 # Pages
 # ***************************************************************************
-proc Pages {run} {
+proc nePages {run} {
   global gaSet buffer
   set ret [GetPageFile $gaSet($::pair.barcode1)]
   if {$ret!=0} {return $ret}
