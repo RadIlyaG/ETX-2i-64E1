@@ -450,6 +450,8 @@ proc ButRun {} {
   }
   
   if {$ret==0} {
+    AddToPairLog $gaSet(pair) "$gaSet(operatorID) $gaSet(operator)"
+    
     IPRelay-Green
     Status ""
     set gaSet(curTest) [$gaGui(startFrom) cget -text]
