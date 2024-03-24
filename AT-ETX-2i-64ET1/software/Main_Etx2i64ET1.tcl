@@ -1077,6 +1077,27 @@ proc Leds {run} {
 #   } else {
 #     set ret 0
 #   }
+
+  set res [regexp {\.[AD]{1,2}C\.} $gaSet(DutInitName)]
+  puts "Leds $gaSet(DutInitName) res:<$res>"
+  if {$res==0} {
+    # if two PSs - no message
+    set ret 0
+  } else {    
+    Power 2 off
+    RLSound::Play information
+    set txt "Remove PS-2"
+    set res [DialogBox -type "OK Cancel" -icon /images/info -title "LED Test" \
+      -message $txt -bg yellow -font {TkDefaultFont 11}]
+    update
+    
+    if {$res!="OK"} {
+      set gaSet(fail) "Remove PS-2 fail"
+      set ret -1
+    } else {
+      set ret 0
+    }    
+  }
   
   
   return $ret
