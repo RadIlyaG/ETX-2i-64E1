@@ -235,15 +235,29 @@ proc ReadBarcode {} {
     foreach la {1} {
       set barcode [string toupper $gaDBox([set ent$la])]  
       set gaSet(1.barcode$la) $barcode
-      set res [catch {exec $gaSet(javaLocation)/java.exe -jar $::RadAppsPath/checkmac.jar $barcode AABBCCFFEEDD} retChk]
-      puts "CheckMac res:<$res> retChk:<$retChk>" ; update
-      if {$res=="1" && $retChk=="0"} {
+#       set res [catch {exec $gaSet(javaLocation)/java.exe -jar $::RadAppsPath/checkmac.jar $barcode AABBCCFFEEDD} retChk]
+#       puts "CheckMac res:<$res> retChk:<$retChk>" ; update
+#       if {$res=="1" && $retChk=="0"} {
+#         puts "No Id-MAC link"
+#         set gaSet(1.barcode$la.IdMacLink) "noLink"
+#       } else {
+#         puts "Id-Mac link or error"
+#         set gaSet(1.barcode$la.IdMacLink) "link"
+#       }
+      foreach {ret resTxt} [::RLWS::CheckMac $barcode AABBCCFFEEDD] {}
+      puts "CheckMac $barcode ret:<$ret> resTxt:<$resTxt>" ; update
+      if {$ret=="-1"} {
+        puts "Id-Mac error:  $resTxt"
+        set gaSet(fail) $resTxt
+        # return $ret
+      } elseif {$ret=="0"} {
         puts "No Id-MAC link"
         set gaSet(1.barcode$la.IdMacLink) "noLink"
-      } else {
-        puts "Id-Mac link or error"
+      } elseif {$ret=="1"} {
+        puts "Id-Mac link"
         set gaSet(1.barcode$la.IdMacLink) "link"
-      }
+      }  
+      set ret 0
     }
     set gaSet(log.$gaSet(pair)) c:/logs/${gaSet(logTime)}-$barcode.txt
     AddToPairLog $gaSet(pair) "$gaSet(DutFullName)"

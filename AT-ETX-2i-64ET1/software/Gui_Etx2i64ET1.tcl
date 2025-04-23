@@ -418,6 +418,8 @@ proc ButRun {} {
       }
     }
   }  
+  
+  #puts "ret1:$ret"
     
 #   puts "[MyTime] source Lib_Put_RicEth.tcl" ; update
 #   source Lib_Put_RicEth.tcl

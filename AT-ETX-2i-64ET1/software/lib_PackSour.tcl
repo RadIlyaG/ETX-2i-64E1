@@ -158,6 +158,7 @@ source Lib_Dxc4.tcl
 source lib_SQlite.tcl
 source LibUrl.tcl
 source Lib_GetOperator.tcl
+source Lib_Ramzor.tcl
 
 if [file exists uutInits/$gaSet(DutInitName)] {
   source uutInits/$gaSet(DutInitName)
