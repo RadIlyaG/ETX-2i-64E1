@@ -1153,9 +1153,18 @@ proc ShowPS {ps} {
   set ret [Send $com "show environment\r\r" chassis]
   if {$ret!=0} {return $ret}
   if {$ps==1} {
-    regexp {1\s+[AD]C\s+([\w\s]+)\s2} $buffer - val
+    set res [regexp {1\s+[AD]C\s+([\w\s]+)\s2} $buffer - val]
+    if {$res==0} {
+      set res [regexp {1[\-\s]+([\w\s]+)\s2} $buffer - val]
+    }  
   } elseif {$ps==2} {
-    regexp {2\s+[AD]C\s+([\w\s]+)\sFAN} $buffer - val
+    set res [regexp {2\s+[AD]C\s+([\w\s]+)\sFAN} $buffer - val ]
+    if {$res==0} {
+      set res [regexp {2[\-\s]+([\w\s]+)\sFAN} $buffer - val]
+    }
+  }
+  if {$res==0} {
+    set val "-1"
   }
   set val [string trim $val]
   puts "ShowPS val:<$val>"
