@@ -1511,8 +1511,11 @@ proc ReadEthPortStatus {unit port mode} {
     if {$res==0} {
       set res [regexp { Manufacturer Part Number :\s([\w\-\s]+)SFP Manufacture Date } $bu - val]
       if {$res==0} {
-        set gaSet(fail) "$unit Read Manufacturer Part Number of SFP in port $port fail"
-        return -1
+        set res [regexp { Manufacturer Part Number :\s([\w\-\s]+)Manufacturer CLEI Code } $bu - val]
+        if {$res==0} {
+          set gaSet(fail) "$unit Read Manufacturer Part Number of SFP in port $port fail"
+          return -1
+        }        
       }  
     }
     set val [string trim $val]
